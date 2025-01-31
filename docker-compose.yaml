@@ -1,0 +1,34 @@
+version: "3"
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - TZ=Europe/Moscow
+    volumes:
+      - ./portainer-data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+  proxymanager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: proxymanager
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+      - '81:81'
+    environment:
+      PUID: 1000
+      PGID: 1000
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+
+networks:
+  default:
+    external:
+      name: shantaram-network

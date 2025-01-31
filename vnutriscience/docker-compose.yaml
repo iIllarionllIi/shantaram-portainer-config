@@ -1,0 +1,12 @@
+version: "3"
+services:
+  vnutriscience:
+    image: 'illarionlli/vnutriscience:latest'
+    container_name: vnutriscience
+    hostname: vnutriscience
+    restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: shantaram-network

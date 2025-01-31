@@ -1,0 +1,24 @@
+version: "3"
+services:
+  shantaram:
+    image: 'rofleksey/shantaram:latest'
+    container_name: shantaram
+    hostname: shantaram
+    restart: unless-stopped
+
+  shantaram-cms:
+    image: 'rofleksey/shantaram-cms:latest'
+    container_name: shantaram-cms
+    hostname: shantaram-cms
+    restart: unless-stopped
+    volumes:
+      - shantaram-cms-data:/opt/data
+      - /root/main/shantaram-cms-config.yaml:/opt/config.yaml
+
+volumes:
+  shantaram-cms-data: {}
+
+networks:
+  default:
+    external:
+      name: shantaram-network
