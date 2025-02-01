@@ -17,8 +17,6 @@ services:
     container_name: seatsurfing-booking-ui
     hostname: seatsurfing-booking-ui
     restart: unless-stopped
-    networks:
-      http:
     environment:
       FRONTEND_URL: 'https://booking.shantaram-spb.ru'
   seatsurfing-admin-ui:
@@ -33,8 +31,6 @@ services:
     container_name: seatsurfing-db
     hostname: seatsurfing-db
     restart: unless-stopped
-    networks:
-      sql:
     volumes:
       - db:/var/lib/postgresql/data
     environment:
