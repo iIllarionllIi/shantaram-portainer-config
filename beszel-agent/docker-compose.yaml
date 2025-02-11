@@ -1,0 +1,18 @@
+version: "3"
+services:
+  beszel-agent:
+    image: henrygd/beszel-agent:latest
+    container_name: "beszel-agent"
+    hostname: "beszel-agent"
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      PORT: 45876
+      KEY: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM7ivdN5q9X3DTO9i1qdpJCY5DnzQGB4MAE/fti+2Dhe"
+
+networks:
+  default:
+    external:
+      name: shantaram-network
