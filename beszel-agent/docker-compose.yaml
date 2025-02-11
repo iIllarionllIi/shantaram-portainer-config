@@ -6,6 +6,8 @@ services:
     hostname: "beszel-agent"
     restart: unless-stopped
     network_mode: host
+    ports:
+      - "45876:45876"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
